@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.shape.Line?>
+
+<AnchorPane id="AnchorPane" fx:id="Telinha" prefHeight="502.0" prefWidth="731.0" style="-fx-background-color: #e5e5e5;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Sockets.FXMLChatController">
+   <children>
+      <Pane prefHeight="505.0" prefWidth="200.0" style="-fx-background-color: #28282d;">
+         <children>
+            <Line endX="64.0" layoutX="125.0" layoutY="53.0" startX="-94.0" />
+            <Pane layoutX="-1.0" layoutY="-13.0" prefHeight="518.0" prefWidth="31.0" style="-fx-background-color: #191b20;" />
+            <Button fx:id="botaousuarios" layoutX="36.0" layoutY="14.0" mnemonicParsing="false" onAction="#ListarAllUsuarios" onMouseClicked="#listausuarios" prefHeight="32.0" prefWidth="148.0" style="-fx-background-color: #373840;" text="Usuarios on-line" textAlignment="CENTER" textFill="WHITE" />
+         </children>
+      </Pane>
+      <Pane layoutX="200.0" layoutY="437.0" prefHeight="68.0" prefWidth="531.0" style="-fx-background-color: #d8d8df;">
+         <children>
+            <TextField fx:id="leitor" layoutX="22.0" layoutY="15.0" onAction="#MensagemServer" prefHeight="31.0" prefWidth="417.0" promptText="Digite uma mensagem..." style="-fx-background-color: #ffffff;" />
+            <Button fx:id="botaozinho" layoutX="463.0" layoutY="15.0" mnemonicParsing="false" onAction="#BotaoEnviarMensagem" style="-fx-background-color: #2a5c76;" text="Enviar" textAlignment="CENTER" textFill="WHITE" />
+         </children>
+      </Pane>
+      <ImageView fitHeight="108.0" fitWidth="417.0" layoutX="257.0" layoutY="8.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@fml%20png.png" />
+         </image>
+      </ImageView>
+      <TextArea fx:id="telinha" accessibleRole="TEXT_FIELD" layoutX="218.0" layoutY="115.0" prefHeight="303.0" prefWidth="498.0" style="-fx-background-color: #cdcdcd;" />
+      <Label layoutX="569.0" layoutY="150.0" prefHeight="17.0" prefWidth="119.0" />
+   </children> 
+</AnchorPane>
