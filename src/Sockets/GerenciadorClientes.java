@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package Sockets;
 
 import Conexao.Criptografica;
@@ -10,11 +5,9 @@ import java.io.BufferedReader;
 
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.io.PrintStream;
 import java.io.PrintWriter;
 
 import java.net.Socket;
-import java.util.Enumeration;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -24,23 +17,18 @@ import java.util.Vector;
  *
  * @author Furuya
  */
-public class GerenciadorClientes extends Thread {
+public class GerenciadorClientes implements Runnable {
 
     private Socket cliente;
     private String nomeCliente;
     private BufferedReader leitor;
     private PrintWriter escritor;
     private static final Map<String, GerenciadorClientes> clientes = new HashMap<String, GerenciadorClientes>();
-    private static Vector nomedetodos;
 
     public GerenciadorClientes(Socket cliente) {
         this.cliente = cliente;
-        start();
     }
 
-    /**
-     *
-     */
     @Override
     public void run() {
 
@@ -55,27 +43,30 @@ public class GerenciadorClientes extends Thread {
             while (true) {
 
                 msg = leitor.readLine();
-                //System.out.println(msg);
+                // System.out.println(msg);
 
                 if (msg.equalsIgnoreCase(Comandos.SAIR)) {
                     this.cliente.close();
                 } else if (msg.startsWith(Comandos.MENSAGEM)) {
 
                     String nomeDestinario = msg.substring(Comandos.MENSAGEM.length(), msg.length());
-                    System.out.println("<" + this.nomeCliente + ">" + " está Cochichando para " + "<" + nomeDestinario + ">"); // informa o tell pro console do servidor
+                    System.out.println(
+                            "<" + this.nomeCliente + ">" + " está Cochichando para " + "<" + nomeDestinario + ">"); // informa
                     GerenciadorClientes destinario = clientes.get(nomeDestinario);
 
                     if (destinario == null) {
                         escritor.println("Usuario não encontrado!");
                     } else {
                         escritor.println("Escreva uma mensagem para " + destinario.getNomeCliente());
-                        destinario.getEscritor().println("<" + this.nomeCliente + ">" + " está cochicando para você: " + leitor.readLine());
+                        destinario.getEscritor().println(
+                                "<" + this.nomeCliente + ">" + " está cochicando para você: " + leitor.readLine());
                     }
 
                 } else if (msg.startsWith("/tellcript")) {
 
                     String nomeDestinario = msg.substring(Comandos.MENSAGEM_CRIPT.length(), msg.length());
-                    System.out.println("<" + nomeDestinario + ">" + " está fazendo coisas erradas."); // informa o tellcript pro console do servidor
+                    System.out.println("<" + nomeDestinario + ">" + " está fazendo coisas erradas."); // informa o
+                                                                                                      // tellcript pro
                     escritor.println(nomeDestinario);
                     GerenciadorClientes destinario = clientes.get(nomeDestinario);
 
@@ -86,7 +77,8 @@ public class GerenciadorClientes extends Thread {
                         Criptografica cod = new Criptografica();
                         cod.setMsg(leitor.readLine());
                         cod.Criptografa();
-                        destinario.getEscritor().println("<" + this.nomeCliente + ">" + " está cochicando para você: " + cod.getMgsCriptografada());
+                        destinario.getEscritor().println("<" + this.nomeCliente + ">" + " está cochicando para você: "
+                                + cod.getMgsCriptografada());
                     }
 
                 } else if (msg.startsWith("/descript")) {
@@ -96,7 +88,8 @@ public class GerenciadorClientes extends Thread {
                     if (destinario == null) {
                         escritor.println("Usuario não encontrado!");
                     } else {
-                        System.out.println(nomeDestinario + " descriptografou a mensagem de " + this.nomeCliente); // informa o tell pro console do servidor
+                        System.out.println(nomeDestinario + " descriptografou a mensagem de " + this.nomeCliente); // informa
+                                                                                                                   // o
                         Criptografica cod = new Criptografica();
                         cod.Descriptografa();
                         escritor.println("<" + msg + ">" + " mandou o seguinte: " + cod.getMsg());
@@ -126,16 +119,14 @@ public class GerenciadorClientes extends Thread {
 
                 }
             }
-            
-            }catch (IOException e) {
+
+        } catch (IOException e) {
             System.err.println("Conexão Perdida");
             clientes.remove(this.nomeCliente);
-            //e.printStackTrace();
+            // e.printStackTrace();
         }
 
-        }
-
-    
+    }
 
     private synchronized void efetuarLogin() throws IOException {
 
@@ -182,9 +173,4 @@ public class GerenciadorClientes extends Thread {
         return nomeCliente;
     }
 
-    /*
-     public BufferedReader getLeitor() {
-     return leitor;
-     }
-     */
 }

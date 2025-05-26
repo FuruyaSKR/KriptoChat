@@ -8,37 +8,39 @@ package Sockets;
 import java.io.IOException;
 import java.net.ServerSocket;
 import java.net.Socket;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
 /**
  *
  * @author Furuya
  */
 public class ServidorSocket {
-    
-    public static void main(String []args){
-        
+
+    public static void main(String[] args) {
         ServerSocket servidor = null;
-        
+        ExecutorService executor = Executors.newCachedThreadPool();
+
         try {
             System.out.println("Iniciando o Servidor...");
             servidor = new ServerSocket(8888);
             System.out.println("Server Open");
-        
-            while(true){
+
+            while (true) {
                 Socket cliente = servidor.accept();
-                new GerenciadorClientes(cliente);
+                executor.submit(new GerenciadorClientes(cliente));
             }
-        
+
         } catch (IOException e) {
-            
-            try {
-               if(servidor != null){
-                   System.out.println("Server Closed");
-                   servidor.close();
-               }
-            } catch (IOException e1) {}
-                System.err.println("Esta Porta está sendo ocupada, ou  servidor foi fechado!");       
-                //e.printStackTrace();
+            if (servidor != null) {
+                try {
+                    servidor.close();
+                    executor.shutdown();
+                } catch (IOException ex) {
+                    System.err.println("Erro ao fechar servidor");
+                }
+            }
+            System.err.println("Esta Porta está sendo ocupada, ou o servidor foi fechado!");
         }
     }
 }
