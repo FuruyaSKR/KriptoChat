@@ -1,0 +1,57 @@
+.root {
+  -fx-background-color: black; /* fallback */
+}
+
+.card {
+  -fx-padding: 40px;
+  -fx-background-color: rgba(0, 0, 0, 0.15);
+  -fx-background-radius: 12;
+  -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.25), 10, 0.2, 0, 4);
+}
+
+.form-title {
+  -fx-font-size: 59px;
+  -fx-text-fill: #3d364a;
+  -fx-font-family: "Inter";
+  -fx-font-weight: bold;
+}
+
+.custom-input {
+  -fx-background-color: transparent;
+  -fx-border-color: rgba(0, 0, 0, 0.42);
+  -fx-border-width: 0 0 1 0;
+  -fx-pref-width: 528;
+  -fx-pref-height: 67;
+  -fx-font-size: 18px;
+  -fx-text-fill: rgba(255, 255, 255, 0.56);
+  -fx-font-family: "Roboto";
+  -fx-padding: 0 0 0 28;
+}
+
+.enter-button {
+  -fx-background-color: #2d2a37;
+  -fx-background-radius: 50;
+  -fx-padding: 12 16;
+  -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.12), 10, 0.3, 0, 2);
+}
+
+.button-label {
+  -fx-text-fill: white;
+  -fx-font-size: 15px;
+  -fx-font-weight: 500;
+  -fx-text-transform: uppercase;
+  -fx-letter-spacing: 0.5px;
+}
+
+.icon-container {
+  -fx-pref-width: 24;
+  -fx-pref-height: 24;
+}
+
+.icon-inner {
+  -fx-background-color: white;
+  -fx-pref-width: 16;
+  -fx-pref-height: 16;
+  -fx-translate-x: 4;
+  -fx-translate-y: 4;
+}

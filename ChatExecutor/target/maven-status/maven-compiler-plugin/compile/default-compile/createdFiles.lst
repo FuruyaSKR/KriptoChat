@@ -1,0 +1,9 @@
+com\chat\conexao\Main_Teste.class
+com\chat\sockets\ClienteSocket$1.class
+com\chat\sockets\ClienteSocket.class
+com\chat\sockets\Comandos.class
+com\chat\executor\LoginController.class
+com\chat\sockets\GerenciadorClientes.class
+com\chat\conexao\Criptografica.class
+com\chat\executor\App.class
+com\chat\sockets\ServidorSocket.class
