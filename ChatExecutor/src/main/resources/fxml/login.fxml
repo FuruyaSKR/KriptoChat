@@ -6,7 +6,7 @@
 <?import com.jfoenix.controls.JFXTextField?>
 <?import com.jfoenix.controls.JFXButton?>
 <?import org.kordamp.ikonli.javafx.FontIcon?>
-
+<?import org.kordamp.ikonli.materialdesign2.MaterialDesignC?>
 
 <StackPane fx:id="root" xmlns:fx="http://javafx.com/fxml" fx:controller="com.chat.executor.LoginController" styleClass="root">
     
@@ -17,16 +17,15 @@
     <VBox spacing="40" alignment="CENTER" styleClass="card">
         <Label text="Qual o seu nome?" styleClass="form-title"/>
         <HBox spacing="16" alignment="CENTER">
-            <JFXTextField fx:id="nomeField"
-              labelFloat="true"
-              promptText="Digite uma mensagem..."
-              styleClass="custom-input"/>
-            <JFXButton onAction="#entrar" styleClass="enter-button">
-                <HBox spacing="8" alignment="CENTER">
-                    <Label text="Entrar" styleClass="button-label"/>
-                    <FontIcon iconLiteral="mdi2a-arrow-right" iconSize="16" iconColor="white" />
-                </HBox>
-            </JFXButton>
+            <TextField fx:id="nomeField"
+           promptText="Digite uma mensagem..."
+           styleClass="custom-input" />
+         <JFXButton onAction="#entrar" styleClass="enter-button">
+            <HBox spacing="8" alignment="CENTER">
+                <Label text="Entrar" styleClass="button-label"/>
+                <FontIcon iconLiteral="mdi2a-arrow-right" iconSize="16" iconColor="white"/>
+            </HBox>
+        </JFXButton>
         </HBox>
     </VBox>
 
